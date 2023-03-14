@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\Goal;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -14,9 +16,19 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, Goal $goal) {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
+        $todo = new Todo();
+        $todo->content = $request->input('content');
+        $todo->user_id = Auth::id();
+        $todo->goal_id = $goal->id;
+        $todo->done = false;
+        $todo->save();
+
+        return redirect()->route('goals.index');
     }
 
 
@@ -27,9 +39,18 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
-    {
-        //
+    public function update(Request $request, Goal $goal, Todo $todo) {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
+        $todo->content = $request->input('content');
+        $todo->user_id = Auth::id();
+        $todo->goal_id = $goal->id;
+        $todo->done = $request->boolean('done', $todo->done);
+        $todo->save();
+
+        return redirect()->route('goals.index');
     }
 
     /**
@@ -38,8 +59,9 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
-    {
-        //
+    public function destroy(Goal $goal, Todo $todo) {
+        $todo->delete();
+
+        return redirect()->route('goals.index');
     }
 }
