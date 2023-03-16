@@ -19,7 +19,7 @@
               @foreach ($tags as $tag)
               <div class="d-flex align-items-center mt-3 me-3">
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editTagModal" data-bs-dismiss="modal" data-tag-id="{{ $tag->id }}" data-tag-name="{{ $tag->name }}">{{ $tag->name }}</button>
-                <button type="button" class="btn-close ms-1" aria-label="削除" data-bs-target="#deleteTagModel" data-bs-dismiss="modal" data-tag-id="{{ $tag->id }}" data-tag-name="{{ $tag->name }}"></button>
+                <button type="button" class="btn-close ms-1" aria-label="削除" data-bs-toggle="modal" data-bs-target="#deleteTagModal" data-bs-dismiss="modal" data-tag-id="{{ $tag->id }}" data-tag-name="{{ $tag->name }}"></button>
               </div>
               @endforeach
             </div>
