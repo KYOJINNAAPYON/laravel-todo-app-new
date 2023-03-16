@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -13,9 +14,17 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $tag = new Tag();
+        $tag->name = $request->input('name');
+        $tag->user_id = Auth::id();
+        $tag->save();
+
+        return redirect()->route('goals.index');
     }
 
     /**
@@ -25,9 +34,16 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
-    {
-        //
+    public function update(Request $request, Tag $tag) {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $tag->name = $request->input('name');
+        $tag->user_id = Auth::id();
+        $tag->save();
+
+        return redirect()->route('goals.index');
     }
 
     /**
@@ -36,8 +52,9 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
-    {
-        //
+    public function destroy(Tag $tag) {
+        $tag->delete();
+
+        return redirect()->route('goals.index');
     }
 }
