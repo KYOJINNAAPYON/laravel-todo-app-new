@@ -1,3 +1,35 @@
+## アプリケーション名
+ ToDoアプリ
+<br>
+## アプリケーション概要
+ アカウントの作成機能やログイン機能などの認証機能を作成し、　　
+ 複数のユーザーが利用できるよう作成しました。
+<br>
+## URL
+https://todo-app-nh.herokuapp.com/login
+<br>
+## 作成時にこだわったこと
+認証機能を作成し、テーブルも複数作成し相互に連携させました。
+CRUD機能の実装方法を学習しました。  
+MVCモデルを採用することにより、コードが整理されて管理しやすくなるほか、開発効率を上げられることを学び、作成しました。  
+bootstrapを使い、スマートフォン等でも表示が崩れないようなデザインを効率的に実装しました。  
+<br>
+認証機能：
+- アカウントの作成
+- ログイン/ログアウト機能  
+  
+目標のCRUD機能：
+- 作成、更新、削除機能
+   
+ToDoのCRUD機能：
+- 作成、更新（編集と完了/未完了選択）、削除機能
+  
+タグのCRUD機能：
+- 作成、更新、削除機能  
+- ToDoとタグの紐付け機能
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
